@@ -1,0 +1,40 @@
+{
+  "family": "aspnet-webapi-task",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "youtubetagmaker",
+      "image": "075206908135.dkr.ecr.eu-west-1.amazonaws.com/youtubetagmaker:latest",
+      "cpu": 256,
+      "memory": 512,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80
+        }
+      ],
+      "environment": [
+        {
+          "name": "ASPNETCORE_ENVIRONMENT",
+          "value": "Production"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/aspnet-webapi",
+          "awslogs-region": "eu-west-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::075206908135:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:ecs:eu-west-1:075206908135:task-definition/YoutubeTagMakerTD:1"
+}
