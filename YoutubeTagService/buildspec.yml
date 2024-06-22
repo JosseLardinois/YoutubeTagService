@@ -3,11 +3,11 @@ phases:
   pre_build:
     commands:
       - echo Restore started on `date`
-      - dotnet restore YoutubeTagMaker/YoutubeTagMaker.csproj
+      - dotnet restore YoutubeTagService/YoutubeTagService.csproj
   build:
     commands:
       - echo Build started on `date`
-      - dotnet publish -c release -o ./build_output YoutubeTagMaker/YoutubeTagMaker.csproj
+      - dotnet publish -c release -o ./build_output YoutubeTagService/YoutubeTagService.csproj
 artifacts:
   files:
     - '**/*'
