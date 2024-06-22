@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      dotnet: 6.0
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 075206908135.dkr.ecr.eu-west-1.amazonaws.com
+  build:
+    commands:
+      - echo Build started on `date`
+      - dotnet restore
+      - dotnet build -c Release
+      - dotnet publish -c Release -o output
+      - echo Build completed on `date`
+      - echo Building the Docker image...
+      - docker build -t aspnet-webapi .
+      - docker tag youtubetagmaker:latest 075206908135.dkr.ecr.your-region.amazonaws.com/youtubetagmaker:latest
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push 075206908135.dkr.ecr.your-region.amazonaws.com/youtubetagmaker:latest
+      - echo Writing image definitions file...
+      - printf '[{"name":"youtubetagmaker-container","imageUri":"%s"}]' 075206908135.dkr.ecr.your-region.amazonaws.com/youtubetagmaker:latest > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
