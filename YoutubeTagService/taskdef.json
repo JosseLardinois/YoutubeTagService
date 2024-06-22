@@ -23,8 +23,7 @@
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/youtubetagmaker
-            ",
+          "awslogs-group": "/ecs/youtubetagmaker",
           "awslogs-region": "eu-west-1",
           "awslogs-stream-prefix": "ecs"
         }
