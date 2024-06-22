@@ -1,40 +1,100 @@
 {
-  "family": "aspnet-webapi-task",
-  "networkMode": "awsvpc",
+  "taskDefinitionArn": "arn:aws:ecs:eu-west-1:075206908135:task-definition/YoutubeTagMakerTD:1",
   "containerDefinitions": [
     {
-      "name": "youtubetagmaker",
+      "name": "YoutubeTagContianer",
       "image": "075206908135.dkr.ecr.eu-west-1.amazonaws.com/youtubetagmaker:latest",
-      "cpu": 256,
-      "memory": 512,
-      "essential": true,
+      "cpu": 0,
+      "links": [],
       "portMappings": [
         {
           "containerPort": 80,
-          "hostPort": 80
-        }
-      ],
-      "environment": [
+          "hostPort": 80,
+          "protocol": "tcp"
+        },
         {
-          "name": "ASPNETCORE_ENVIRONMENT",
-          "value": "Production"
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp"
         }
       ],
+      "essential": true,
+      "entryPoint": [],
+      "command": [],
+      "environment": [
+      ],
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "secrets": [],
+      "dnsServers": [],
+      "dnsSearchDomains": [],
+      "extraHosts": [],
+      "dockerSecurityOptions": [],
+      "dockerLabels": {},
+      "ulimits": [],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/youtubetagmaker",
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/YoutubeTagMakerTD",
           "awslogs-region": "eu-west-1",
           "awslogs-stream-prefix": "ecs"
-        }
-      }
+        },
+        "secretOptions": []
+      },
+      "systemControls": []
     }
+  ],
+  "family": "YoutubeTagMakerTD",
+  "executionRoleArn": "arn:aws:iam::075206908135:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "revision": 1,
+  "volumes": [],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+    },
+    {
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "ecs.capability.task-eni"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+    }
+  ],
+  "placementConstraints": [],
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
   ],
   "requiresCompatibilities": [
     "FARGATE"
   ],
-  "cpu": "256",
-  "memory": "512",
-  "executionRoleArn": "arn:aws:iam::075206908135:role/ecsTaskExecutionRole",
-  "taskRoleArn": "arn:aws:ecs:eu-west-1:075206908135:task-definition/YoutubeTagMakerTD:1"
+  "cpu": "1024",
+  "memory": "3072",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "registeredAt": "2022-10-23T15:00:49.777Z",
+  "registeredBy": "arn:aws:iam::075206908135:user/CobusCloudDev"
 }

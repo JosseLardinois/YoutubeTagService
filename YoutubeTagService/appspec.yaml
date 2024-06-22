@@ -5,5 +5,5 @@ Resources:
       Properties:
         TaskDefinition:  "arn:aws:ecs:eu-west-1:075206908135:task-definition/YoutubeTagMakerTD:1"
         LoadBalancerInfo:
-          ContainerName: "youtubetagmaker"
+          ContainerName: "YoutubeTagContianer"
           ContainerPort: 80
