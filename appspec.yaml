@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "{[taskDefenitionArn]}"
+        TaskDefinition: "{taskDefenitionArn}"
         LoadBalancerInfo:
           ContainerName: "YoutubeTagContainer"
           ContainerPort: 80
